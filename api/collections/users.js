@@ -24,7 +24,7 @@ class Users {
     try {
       const connection = await this.connect();
       const resultado = await connection
-        .find({ discordId: this.discordId })
+        .find({ discordID: this.discordId })
         .toArray();
       return resultado;
     } catch (error) {
