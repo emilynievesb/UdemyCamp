@@ -6,6 +6,7 @@ const auth = loadEnv("development", process.cwd(), "DISCORD");
 const credentials = {
   user: env.SERVER_USER,
   pass: env.SERVER_PASSWORD,
+  secret: env.SERVER_PRIVATE_KEY,
   db: env.SERVER_DATABASE,
   hostname: env.SERVER_HOSTNAME,
   port: env.SERVER_PORT,
