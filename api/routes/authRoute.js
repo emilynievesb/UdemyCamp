@@ -3,6 +3,7 @@ import session from "express-session";
 import DiscordStrategy from "passport-discord";
 import { authentication } from "../utils/config.js";
 import { passportStrategy } from "../utils/auth/discordStrategy.js";
+import { isAuth } from "../utils/auth/authMiddleware.js";
 const loginRoute = Router();
 
 loginRoute.get("/discord", passportStrategy.authenticate("discord"));
@@ -14,10 +15,10 @@ loginRoute.get(
     res.redirect("/auth/");
   }
 );
-loginRoute.get("/", (req, res) => {
+loginRoute.get("/", isAuth, (req, res) => {
   res.send("Logeo exitosooooooooooooooooooooooooooooooo");
 });
-loginRoute.get("/fail", (req, res) => {
+loginRoute.get("/fail", isAuth, (req, res) => {
   res.send("Paila mi pa");
 });
 export { loginRoute };
