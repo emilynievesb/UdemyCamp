@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "connect-mongo": "^5.0.0",
     "cors": "^2.8.5",
     "express-rate-limit": "^7.0.1",
     "express-session": "^1.17.3",
@@ -19,6 +20,7 @@
     "mongodb": "^5.7.0",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
+    "passport-http-bearer": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",

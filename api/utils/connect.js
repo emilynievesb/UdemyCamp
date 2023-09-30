@@ -2,18 +2,12 @@ import { MongoClient } from "mongodb";
 import { credentials } from "./config.js";
 let dbConnection = null;
 
-const db = {
-  user: credentials.user,
-  pass: credentials.pass,
-  dbname: credentials.db,
-};
-
 async function connectionDB() {
   if (dbConnection) {
     return dbConnection;
   }
   try {
-    const url = `mongodb+srv://${db.user}:${db.pass}@cluster0.wibpscy.mongodb.net/${db.dbname}`;
+    const url = `mongodb+srv://${credentials.user}:${credentials.pass}@cluster0.wibpscy.mongodb.net/${credentials.db}`;
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
