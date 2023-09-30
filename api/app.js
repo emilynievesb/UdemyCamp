@@ -19,7 +19,8 @@ app.use(
       mongoUrl: `mongodb+srv://${credentials.user}:${credentials.pass}@cluster0.wibpscy.mongodb.net/${credentials.db}`,
     }),
     ttl: 5,
-    autoRemove: "native",
+    autoRemove: "interval",
+    autoRemoveInterval: 0.5,
     cookie: {
       maxAge: 5 * 1000,
     },
