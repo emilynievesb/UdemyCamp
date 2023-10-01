@@ -10,7 +10,8 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
-const pages = ["Home", "Courses", "Login"];
+import { useNavigate } from "react-router-dom";
+const pages = ["Login"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -21,6 +22,10 @@ function Header() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+  const navigate = useNavigate();
+  const handleClickLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -130,20 +135,17 @@ function Header() {
               justifyContent: "flex-end",
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  width: "20%",
-                  display: "block",
-                }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleClickLogin}
+              sx={{
+                my: 2,
+                color: "white",
+                width: "20%",
+                display: "block",
+              }}
+            >
+              Login
+            </Button>
           </Box>
         </Toolbar>
       </Container>
