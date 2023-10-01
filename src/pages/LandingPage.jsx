@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import { Header } from "../components/HeaderLanding";
 import { SectionHome } from "../components/SectionHome";
 import { CoursesSection } from "../components/CoursesSection";
 import { SectionFooter } from "../components/SectionFooter";
