@@ -15,17 +15,26 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const existingUser = new Users({
-          username: profile.username,
-          discordId: profile.id,
-          email: profile.email,
-          avatar: profile.avatar,
-        });
-        const searchUser = await existingUser.searchUser();
-        if (searchUser.length === 0) {
-          await existingUser.postUser();
+        const userGuild = profile.guilds.find(
+          (guild) =>
+            guild.id === "1101581994355347526" &&
+            guild.name === "CampusLands 🚀"
+        );
+        if (userGuild) {
+          const existingUser = new Users({
+            username: profile.username,
+            discordId: profile.id,
+            email: profile.email,
+            avatar: profile.avatar,
+          });
+          const searchUser = await existingUser.searchUser();
+          if (searchUser.length === 0) {
+            await existingUser.postUser();
+          }
+          return done(null, profile);
+        } else {
+          done("'Usuario no pertenece a campuslands'", null);
         }
-        return done(null, profile);
       } catch (error) {
         done(error, null);
         throw error;
