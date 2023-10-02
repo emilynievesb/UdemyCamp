@@ -11,9 +11,9 @@ import Tooltip from "@mui/material/Tooltip";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 import MenuItem from "@mui/material/MenuItem";
 import { CssBaseline } from "@mui/material";
+import { LogoutFetch } from "../../shared/services/formulary";
 
 function Header({ id, username, avatar }) {
-  const settings = [username, "Logout"];
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -22,6 +22,10 @@ function Header({ id, username, avatar }) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleLogout = async () => {
+    window.location.reload();
+    await LogoutFetch();
   };
 
   return (
@@ -88,7 +92,7 @@ function Header({ id, username, avatar }) {
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt="Remy Sharp"
+                    alt="Avatar"
                     src={`https://cdn.discordapp.com/avatars/${id}/${avatar}`}
                   />
                 </IconButton>
@@ -109,11 +113,12 @@ function Header({ id, username, avatar }) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{username}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
