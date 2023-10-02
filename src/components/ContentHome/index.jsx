@@ -6,8 +6,13 @@ import LogoReact from "../../img/react.png";
 import LogoNode from "../../img/nodejs.png";
 import LogoGit from "../../img/git.png";
 import LogoDocker from "../../img/docker.webp";
+import { useNavigate } from "react-router-dom/dist";
 
 function ContentHome() {
+  const navigate = useNavigate();
+  const handleClickCourse = (prop) => {
+    navigate(`/preview/${prop}`);
+  };
   return (
     <>
       <CssBaseline />
@@ -39,6 +44,7 @@ function ContentHome() {
           }}
         >
           <Box
+            onClick={() => handleClickCourse("react")}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -58,6 +64,7 @@ function ContentHome() {
             <img src={LogoReact} width={"90vw"} />
           </Box>
           <Box
+            onClick={() => handleClickCourse("docker")}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -77,6 +84,7 @@ function ContentHome() {
             <img src={LogoDocker} width={"90vw"} />
           </Box>
           <Box
+            onClick={() => handleClickCourse("git")}
             sx={{
               display: "flex",
               maxHeight: "10vh",
@@ -97,6 +105,7 @@ function ContentHome() {
             <img src={LogoGit} width={"90vw"} />
           </Box>
           <Box
+            onClick={() => handleClickCourse("nodejs")}
             sx={{
               display: "flex",
               flexDirection: "column",
