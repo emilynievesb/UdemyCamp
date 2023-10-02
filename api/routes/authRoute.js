@@ -24,15 +24,12 @@ loginRoute.get(
   }
 );
 loginRoute.get("/logout", (req, res, next) => {
-  res.cookie("connect.sid", "", { expires: new Date(0) });
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
-    res.json({ msg: "logout session" });
   });
   delete req.user;
-  res.redirect(`http://${front.host}:${front.port}/`);
 });
 loginRoute.get("/status", isAuth, (req, res) => {
   req.user ? res.status(200).json(req.user) : res.status(401).end();
