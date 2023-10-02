@@ -12,9 +12,8 @@ import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 import MenuItem from "@mui/material/MenuItem";
 import { CssBaseline } from "@mui/material";
 
-const settings = ["Logout"];
-
-function Header() {
+function Header({ id, username, avatar }) {
+  const settings = [username, "Logout"];
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -28,7 +27,10 @@ function Header() {
   return (
     <>
       <CssBaseline />
-      <AppBar position="static" sx={{ backgroundColor: "#13161c" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "#13161c", borderBottom: "1px solid grey" }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <EmojiObjectsTwoToneIcon
@@ -85,7 +87,10 @@ function Header() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={`https://cdn.discordapp.com/avatars/${id}/${avatar}`}
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
