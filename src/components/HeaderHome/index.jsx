@@ -11,7 +11,7 @@ import Tooltip from "@mui/material/Tooltip";
 import EmojiObjectsTwoToneIcon from "@mui/icons-material/EmojiObjectsTwoTone";
 import MenuItem from "@mui/material/MenuItem";
 import { CssBaseline } from "@mui/material";
-import { LogoutFetch } from "../../shared/services/formulary";
+import { LogoutFetch } from "../../shared/services/fetchServices";
 
 function Header({ id, username, avatar }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);

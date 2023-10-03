@@ -12,6 +12,7 @@ function SectionFooter() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          padding: "3rem",
           height: { lg: "70vh" },
           textAlign: "center",
           backgroundColor: "#e5e5e5",
