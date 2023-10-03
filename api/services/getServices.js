@@ -7,12 +7,6 @@ const getUser = async (username) => {
   const result = await user.searchUser();
   return result;
 };
-const getEmail = async (email) => {
-  const user = new Users();
-  user.email = email;
-  const result = await user.searchEmail();
-  return result;
-};
 
 const getSections = async (course) => {
   const videos = new Video();
@@ -20,5 +14,12 @@ const getSections = async (course) => {
   const result = await videos.getSections();
   return result;
 };
+const getSources = async (course, section) => {
+  const videos = new Video();
+  videos.course = course;
+  videos.sectionName = section;
+  const result = await videos.getSources();
+  return result;
+};
 
-export { getUser, getEmail, getSections };
+export { getUser, getSections, getSources };

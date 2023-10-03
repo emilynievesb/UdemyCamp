@@ -42,5 +42,16 @@ class Video {
       throw error;
     }
   }
+  async getSources() {
+    try {
+      const connection = await this.connect();
+      const resultado = await connection
+        .find({ sectionName: this.sectionName })
+        .toArray();
+      return resultado;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 export { Video };
