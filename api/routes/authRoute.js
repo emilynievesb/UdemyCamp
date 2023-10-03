@@ -17,7 +17,7 @@ loginRoute.get("/discord", passportStrategy.authenticate("discord"));
 loginRoute.get(
   "/redirect",
   passportStrategy.authenticate("discord", {
-    failureRedirect: `http://${front.host}:${front.port}/fail`,
+    failureRedirect: `http://${front.host}:${front.port}/`,
   }),
   (req, res) => {
     res.redirect(`http://${front.host}:${front.port}/dashboard`);
