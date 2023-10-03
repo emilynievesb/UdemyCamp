@@ -1,20 +1,25 @@
 import "./index.css";
+import "@fontsource/roboto/500.css";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { HomeUser } from "./pages/HomeUser";
 import { LandingPage } from "./pages/LandingPage";
-import "@fontsource/roboto/500.css";
 import { Fail } from "./pages/Fail";
 import { PreviewVideoUser } from "./pages/PreviewVideoUser";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom/dist";
-import { userFetch } from "./shared/services/formulary";
+import { userFetch } from "./shared/services/fetchServices";
 
+const statusCodeFetch = async () => {
+  const fetch = await userFetch();
+  if (fetch.ok) {
+    return true;
+  }
+  return false;
+};
+const status = await statusCodeFetch();
 function App() {
-  const [isAuth, setIsAuth] = useState(
-    async () => (await userFetch().status) === 200
-  );
+  const [isAuth, setIsAuth] = useState(status);
   const [user, setUser] = useState(false);
   const [avatar, setAvatar] = useState(false);
   const [username, setUsername] = useState(false);
@@ -34,6 +39,7 @@ function App() {
     fetchData();
   }),
     [isAuth];
+
   return (
     <>
       <Routes>
@@ -46,7 +52,50 @@ function App() {
           )}
         />
         <Route path="/fail" element={<Fail />} />
-        <Route path="/preview" element={auth(<PreviewVideoUser />)} />
+        <Route
+          path="/preview/react"
+          element={auth(
+            <PreviewVideoUser
+              username={username}
+              id={id}
+              avatar={avatar}
+              course={"react"}
+            />
+          )}
+        />
+        <Route
+          path="/preview/git"
+          element={auth(
+            <PreviewVideoUser
+              username={username}
+              id={id}
+              avatar={avatar}
+              course={"git"}
+            />
+          )}
+        />
+        <Route
+          path="/preview/docker"
+          element={auth(
+            <PreviewVideoUser
+              username={username}
+              id={id}
+              avatar={avatar}
+              course={"docker"}
+            />
+          )}
+        />
+        <Route
+          path="/preview/nodejs"
+          element={auth(
+            <PreviewVideoUser
+              username={username}
+              id={id}
+              avatar={avatar}
+              course={"node"}
+            />
+          )}
+        />
       </Routes>
     </>
   );
