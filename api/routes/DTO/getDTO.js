@@ -23,5 +23,16 @@ const getEmailDTO = async (req, res, next) => {
     res.status(400).json({ status: "fail", message: error.errors });
   }
 };
+const getSectionsDTO = async (req, res, next) => {
+  try {
+    const productSchema = object({
+      course: string().required(),
+    });
+    await productSchema.validate(req.query);
+    next();
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error.errors });
+  }
+};
 
-export { getUserDTO, getEmailDTO };
+export { getUserDTO, getEmailDTO, getSectionsDTO };

@@ -1,4 +1,4 @@
-import { getEmail, getUser } from "../services/getServices.js";
+import { getEmail, getSections, getUser } from "../services/getServices.js";
 
 const getUserController = async (req, res, next) => {
   try {
@@ -19,4 +19,14 @@ const getEmailController = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
-export { getUserController, getEmailController };
+
+const getSectionsController = async (req, res, next) => {
+  try {
+    const { course } = req.query;
+    const result = await getSections(course);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+export { getUserController, getEmailController, getSectionsController };
