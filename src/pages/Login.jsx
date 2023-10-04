@@ -22,6 +22,7 @@ function Login() {
         <Box
           sx={{
             width: "40%",
+            width: { xs: "80%", sm: "60%" },
             height: "80vh",
             backgroundColor: "white",
             boxShadow: "0 0 20px 0 grey",
