@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { postUserController } from "../controllers/postControllers.js";
 import { limitPets, limitSize } from "../utils/limit.js";
-import { postUserDTO } from "./DTO/postDTO.js";
+import { postCommentController } from "../controllers/postControllers.js";
+import { postCommentDTO } from "./DTO/postDTO.js";
 
 const postInitRoute = () => {
   const router = Router();
   router.post(
-    "/agregarUser",
+    "/postComment",
     limitPets,
     limitSize,
-    postUserDTO,
-    postUserController
+    postCommentDTO,
+    postCommentController
   );
   return router;
 };

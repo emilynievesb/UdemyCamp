@@ -1,4 +1,9 @@
-import { getSections, getSources, getUser } from "../services/getServices.js";
+import {
+  getComments,
+  getSections,
+  getSources,
+  getUser,
+} from "../services/getServices.js";
 
 const getUserController = async (req, res, next) => {
   try {
@@ -29,4 +34,20 @@ const getSourcesController = async (req, res, next) => {
     res.status(500).json(error);
   }
 };
-export { getUserController, getSourcesController, getSectionsController };
+
+const getCommentsController = async (req, res, next) => {
+  try {
+    const { course, videoTitle } = req.query;
+    console.log(course, videoTitle);
+    const result = await getComments(course, videoTitle);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+export {
+  getUserController,
+  getSourcesController,
+  getSectionsController,
+  getCommentsController,
+};
