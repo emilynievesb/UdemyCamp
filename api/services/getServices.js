@@ -21,9 +21,11 @@ const getSources = async (course, section) => {
   const result = await videos.getSources();
   return result;
 };
-const getComments = async (course, videoTitle) => {
+const getComments = async (course, sectionID, videoTitle) => {
+  console.log(course, sectionID, videoTitle);
   const videos = new Video();
   videos.course = course;
+  videos.sectionID = sectionID;
   videos.videoTitle = videoTitle;
   const result = await videos.getComments();
   return result;

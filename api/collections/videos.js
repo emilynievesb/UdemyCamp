@@ -8,6 +8,7 @@ class Video {
   newComment;
   type;
   sectionName;
+  sectionID;
   videoTitle;
   videoUrl;
   links;
@@ -49,7 +50,7 @@ class Video {
         .aggregate([
           {
             $match: {
-              sectionName: "Sección 1: Introducción", // Reemplaza con la sectionName deseada
+              id: Number(this.sectionID), // Reemplaza con la sectionName deseada
             },
           },
           {
@@ -57,7 +58,7 @@ class Video {
           },
           {
             $match: {
-              "sources.videoTitle": "Introducción al curso", // Reemplaza con el videoTitle deseado
+              "sources.videoTitle": this.videoTitle, // Reemplaza con el videoTitle deseado
             },
           },
           {
