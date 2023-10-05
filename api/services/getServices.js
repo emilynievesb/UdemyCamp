@@ -22,7 +22,6 @@ const getSources = async (course, section) => {
   return result;
 };
 const getComments = async (course, sectionID, videoTitle) => {
-  console.log(course, sectionID, videoTitle);
   const videos = new Video();
   videos.course = course;
   videos.sectionID = sectionID;

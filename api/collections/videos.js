@@ -1,6 +1,7 @@
 import { connection } from "../utils/connect.js";
 
 class Video {
+  id;
   course;
   username;
   discordID;
@@ -78,7 +79,13 @@ class Video {
     try {
       const connection = await this.connect();
       const resultado = await connection.updateOne(
-        { "sources.videoTitle": this.videoTitle },
+        {
+          $and: [
+            { id: Number(this.id) },
+            { "sources.videoTitle": this.videoTitle },
+          ],
+        },
+
         {
           $push: {
             "sources.$.comments": {

@@ -5,13 +5,7 @@ import { postCommentDTO } from "./DTO/postDTO.js";
 
 const postInitRoute = () => {
   const router = Router();
-  router.post(
-    "/postComment",
-    limitPets,
-    limitSize,
-    postCommentDTO,
-    postCommentController
-  );
+  router.post("/postComment", postCommentDTO, postCommentController);
   return router;
 };
 

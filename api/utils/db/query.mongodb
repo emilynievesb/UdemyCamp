@@ -4,7 +4,7 @@ db.createCollection("users", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["username", "discordID", "email", "avatar", "rol"],
+      required: ["username", "discordID", "avatar", "rol"],
       properties: {
         username: {
           bsonType: "string",
@@ -13,12 +13,6 @@ db.createCollection("users", {
         discordID: {
           bsonType: "string",
           description: "discordID de un usuario",
-        },
-        email: {
-          bsonType: "string",
-          pattern:
-            "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
-          description: "email del usuario",
         },
         avatar: {
           bsonType: "string",

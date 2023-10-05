@@ -2,6 +2,7 @@ import { Video } from "../collections/videos.js";
 
 const postComment = async (
   course,
+  sectionID,
   videoTitle,
   username,
   discordID,
@@ -10,6 +11,7 @@ const postComment = async (
 ) => {
   const video = new Video();
   video.course = course;
+  video.id = sectionID;
   video.videoTitle = videoTitle;
   video.username = username;
   video.discordID = discordID;

@@ -3,9 +3,19 @@ import { postComment } from "../services/postServices.js";
 const postCommentController = async (req, res, next) => {
   try {
     const { username, discordID, avatar, newComment } = req.body;
-    const { course, videoTitle } = req.query;
+    const { course, videoTitle, sectionID } = req.query;
+    console.log(
+      username,
+      discordID,
+      avatar,
+      newComment,
+      course,
+      videoTitle,
+      sectionID
+    );
     const result = await postComment(
       course,
+      sectionID,
       videoTitle,
       username,
       discordID,
