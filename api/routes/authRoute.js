@@ -1,24 +1,37 @@
 import { Router } from "express";
 import session from "express-session";
 import DiscordStrategy from "passport-discord";
-import { authentication } from "../utils/config.js";
+import { authentication, front } from "../utils/config.js";
 import { passportStrategy } from "../utils/auth/discordStrategy.js";
-import { isAuth } from "../utils/auth/authMiddleware.js";
 const loginRoute = Router();
+
+const isAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.status(401).json({ msg: "Not authorized" });
+  }
+};
 
 loginRoute.get("/discord", passportStrategy.authenticate("discord"));
 loginRoute.get(
   "/redirect",
-  passportStrategy.authenticate("discord", { failureRedirect: "/auth/fail" }),
+  passportStrategy.authenticate("discord", {
+    failureRedirect: `http://${front.host}:${front.port}/`,
+  }),
   (req, res) => {
-    // Autenticación exitosa, puedes redirigir al usuario a una página de inicio de sesión, por ejemplo.
-    res.redirect("/auth/");
+    res.redirect(`http://${front.host}:${front.port}/dashboard`);
   }
 );
-loginRoute.get("/", isAuth, (req, res) => {
-  res.send("Logeo exitosooooooooooooooooooooooooooooooo");
+loginRoute.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+  });
+  delete req.user;
 });
-loginRoute.get("/fail", isAuth, (req, res) => {
-  res.send("Paila mi pa");
+loginRoute.get("/status", isAuth, (req, res) => {
+  req.user ? res.status(200).json(req.user) : res.status(401).end();
 });
 export { loginRoute };

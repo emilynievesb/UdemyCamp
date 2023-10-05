@@ -1,4 +1,9 @@
-import { getEmail, getUser } from "../services/getServices.js";
+import {
+  getComments,
+  getSections,
+  getSources,
+  getUser,
+} from "../services/getServices.js";
 
 const getUserController = async (req, res, next) => {
   try {
@@ -10,13 +15,38 @@ const getUserController = async (req, res, next) => {
   }
 };
 
-const getEmailController = async (req, res, next) => {
+const getSectionsController = async (req, res, next) => {
   try {
-    const { email } = req.query;
-    const result = await getEmail(email);
+    const { course } = req.query;
+    const result = await getSections(course);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
 };
-export { getUserController, getEmailController };
+
+const getSourcesController = async (req, res, next) => {
+  try {
+    const { course, section } = req.query;
+    const result = await getSources(course, section);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+const getCommentsController = async (req, res, next) => {
+  try {
+    const { course, sectionID, videoTitle } = req.query;
+    const result = await getComments(course, sectionID, videoTitle);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+export {
+  getUserController,
+  getSourcesController,
+  getSectionsController,
+  getCommentsController,
+};

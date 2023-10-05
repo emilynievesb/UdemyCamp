@@ -12,10 +12,10 @@ const getUserDTO = async (req, res, next) => {
   }
 };
 
-const getEmailDTO = async (req, res, next) => {
+const getSectionsDTO = async (req, res, next) => {
   try {
     const productSchema = object({
-      email: string().required(),
+      course: string().required(),
     });
     await productSchema.validate(req.query);
     next();
@@ -23,5 +23,28 @@ const getEmailDTO = async (req, res, next) => {
     res.status(400).json({ status: "fail", message: error.errors });
   }
 };
-
-export { getUserDTO, getEmailDTO };
+const getSourcesDTO = async (req, res, next) => {
+  try {
+    const productSchema = object({
+      course: string().required(),
+      section: string().required(),
+    });
+    await productSchema.validate(req.query);
+    next();
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error.errors });
+  }
+};
+const getCommentsDTO = async (req, res, next) => {
+  try {
+    const productSchema = object({
+      course: string().required(),
+      videoTitle: string().required(),
+    });
+    await productSchema.validate(req.query);
+    next();
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: error.errors });
+  }
+};
+export { getUserDTO, getSectionsDTO, getSourcesDTO, getCommentsDTO };

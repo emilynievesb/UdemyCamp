@@ -1,16 +1,30 @@
-import { postUser } from "../services/postServices.js";
+import { postComment } from "../services/postServices.js";
 
-const postUserController = async (req, res, next) => {
+const postCommentController = async (req, res, next) => {
   try {
-    const { username, password, email, fechaNacimiento } = req.body;
-    const result = await postUser(username, password, email, fechaNacimiento);
-    // if (result.length === 0) {
-    //   res.status(200).json("El paciente no ha tenido citas finalizadas");
-    //   return;
-    // }
+    const { username, discordID, avatar, newComment } = req.body;
+    const { course, videoTitle, sectionID } = req.query;
+    console.log(
+      username,
+      discordID,
+      avatar,
+      newComment,
+      course,
+      videoTitle,
+      sectionID
+    );
+    const result = await postComment(
+      course,
+      sectionID,
+      videoTitle,
+      username,
+      discordID,
+      avatar,
+      newComment
+    );
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
 };
-export { postUserController };
+export { postCommentController };

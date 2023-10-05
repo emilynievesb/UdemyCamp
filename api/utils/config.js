@@ -2,6 +2,7 @@ import { loadEnv } from "vite";
 
 const env = loadEnv("development", process.cwd(), "SERVER");
 const auth = loadEnv("development", process.cwd(), "DISCORD");
+const vite = loadEnv("development", process.cwd(), "VITE");
 
 const credentials = {
   user: env.SERVER_USER,
@@ -16,5 +17,9 @@ const authentication = {
   client: auth.DISCORD_CLIENT_ID,
   secret: auth.DISCORD_SECRET,
 };
+const front = {
+  host: vite.VITE_HOST,
+  port: vite.VITE_PORT,
+};
 
-export { credentials, authentication };
+export { credentials, authentication, front };
