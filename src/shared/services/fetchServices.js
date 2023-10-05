@@ -122,13 +122,11 @@ async function postCommentFetch({
       credentials: "include",
       body: JSON.stringify(requestBody),
     });
-    console.log(URLapi);
     if (!response.ok) {
       throw new Error("Error en la petición");
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error al realizar la solicitud:", error);
