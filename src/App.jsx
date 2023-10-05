@@ -1,10 +1,10 @@
 import "./index.css";
-import "@fontsource/roboto/500.css";
+import "@fontsource/inter";
+
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { HomeUser } from "./pages/HomeUser";
 import { LandingPage } from "./pages/LandingPage";
-import { Fail } from "./pages/Fail";
 import { PreviewVideoUser } from "./pages/PreviewVideoUser";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom/dist";
@@ -51,7 +51,6 @@ function App() {
             <HomeUser username={username} id={id} avatar={avatar} />
           )}
         />
-        <Route path="/fail" element={<Fail />} />
         <Route
           path="/preview/react"
           element={auth(
