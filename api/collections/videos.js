@@ -75,6 +75,37 @@ class Video {
       throw error;
     }
   }
+  async getCommentsText() {
+    try {
+      const connection = await this.connect();
+      const resultado = await connection
+        .aggregate([
+          {
+            $match: {
+              id: Number(this.sectionID), // Reemplaza con la sectionName deseada
+            },
+          },
+          {
+            $unwind: "$sources",
+          },
+          {
+            $match: {
+              "sources.Title": this.videoTitle, // Reemplaza con el videoTitle deseado
+            },
+          },
+          {
+            $project: {
+              _id: 0,
+              comments: "$sources.comments",
+            },
+          },
+        ])
+        .toArray();
+      return resultado;
+    } catch (error) {
+      throw error;
+    }
+  }
   async postComment() {
     try {
       const connection = await this.connect();
@@ -84,6 +115,30 @@ class Video {
             { id: Number(this.id) },
             { "sources.videoTitle": this.videoTitle },
           ],
+        },
+
+        {
+          $push: {
+            "sources.$.comments": {
+              discordID: this.discordID,
+              username: this.username,
+              avatar: this.avatar,
+              newComment: this.newComment,
+            },
+          },
+        }
+      );
+      return resultado;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async postCommentText() {
+    try {
+      const connection = await this.connect();
+      const resultado = await connection.updateOne(
+        {
+          $and: [{ id: Number(this.id) }, { "sources.Title": this.videoTitle }],
         },
 
         {

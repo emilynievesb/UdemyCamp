@@ -79,11 +79,15 @@ async function sourcesFetch(course, section) {
     throw error; // Puedes optar por relanzar el error si lo deseas
   }
 }
-async function commentsFetch(course, sectionID, videoTitle) {
+async function commentsFetch(type, course, sectionID, videoTitle) {
   try {
-    let URLapi = `http://${
-      import.meta.env.VITE_BACK_HOST
-    }/api/get/getComments?sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`;
+    let URLapi = type
+      ? `http://${
+          import.meta.env.VITE_BACK_HOST
+        }/api/get/getComments?type=${type}&sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`
+      : `http://${
+          import.meta.env.VITE_BACK_HOST
+        }/api/get/getComments?sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`;
     const response = await fetch(URLapi, {
       method: "GET",
       headers: {
@@ -105,15 +109,20 @@ async function commentsFetch(course, sectionID, videoTitle) {
 }
 
 async function postCommentFetch({
+  type,
   course,
   sectionID,
   videoTitle,
   requestBody,
 }) {
   try {
-    let URLapi = `http://${
-      import.meta.env.VITE_BACK_HOST
-    }/api/post/postComment?sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`;
+    let URLapi = type
+      ? `http://${
+          import.meta.env.VITE_BACK_HOST
+        }/api/post/postComment?type=${type}&sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`
+      : `http://${
+          import.meta.env.VITE_BACK_HOST
+        }/api/post/postComment?sectionID=${sectionID}&course=${course}&videoTitle=${videoTitle}`;
     const response = await fetch(URLapi, {
       method: "POST",
       headers: {

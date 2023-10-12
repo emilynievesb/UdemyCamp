@@ -21,12 +21,15 @@ const getSources = async (course, section) => {
   const result = await videos.getSources();
   return result;
 };
-const getComments = async (course, sectionID, videoTitle) => {
+const getComments = async (type, course, sectionID, videoTitle) => {
   const videos = new Video();
+  videos.type = type;
   videos.course = course;
   videos.sectionID = sectionID;
   videos.videoTitle = videoTitle;
-  const result = await videos.getComments();
+  const result = type
+    ? await videos.getCommentsText()
+    : await videos.getComments();
   return result;
 };
 export { getUser, getSections, getSources, getComments };
