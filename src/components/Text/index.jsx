@@ -121,8 +121,9 @@ function Text(props) {
                   <Comments
                     key={commentsKey}
                     course={item.course}
+                    type={item.type}
                     sectionID={item.sectionID}
-                    videoTitle={item.videoTitle}
+                    videoTitle={item.Title}
                     id={props.id}
                     username={props.username}
                     avatar={props.avatar}

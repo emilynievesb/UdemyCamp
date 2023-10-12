@@ -20,7 +20,15 @@ import {
 } from "../../shared/services/fetchServices";
 import { Comment } from "../Comment";
 
-function Comments({ course, sectionID, videoTitle, id, username, avatar }) {
+function Comments({
+  course,
+  type,
+  sectionID,
+  videoTitle,
+  id,
+  username,
+  avatar,
+}) {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState("normal");
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,8 +40,9 @@ function Comments({ course, sectionID, videoTitle, id, username, avatar }) {
     if (!fetchComments) {
       const getComments = async () => {
         try {
-          const res = await commentsFetch(course, sectionID, videoTitle);
+          const res = await commentsFetch(type, course, sectionID, videoTitle);
           setComments(res);
+          console.log(res);
           setFetchComments(true);
         } catch (error) {
           console.error("Error al obtener los comentarios:", error);
@@ -42,6 +51,7 @@ function Comments({ course, sectionID, videoTitle, id, username, avatar }) {
       getComments();
     }
   }, [fetchComments]);
+  console.log(fetchComments);
 
   const handleWritte = (e) => {
     const comment = e.target.value;
@@ -54,6 +64,7 @@ function Comments({ course, sectionID, videoTitle, id, username, avatar }) {
     }
     if (isNotEmptyOrSpaces(comment)) {
       const newComment = {
+        type: type,
         course: course,
         sectionID: sectionID,
         videoTitle: videoTitle,
