@@ -37,8 +37,8 @@ const getSourcesController = async (req, res, next) => {
 
 const getCommentsController = async (req, res, next) => {
   try {
-    const { course, sectionID, videoTitle } = req.query;
-    const result = await getComments(course, sectionID, videoTitle);
+    const { type, course, sectionID, videoTitle } = req.query;
+    const result = await getComments(type, course, sectionID, videoTitle);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);

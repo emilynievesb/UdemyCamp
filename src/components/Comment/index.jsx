@@ -24,7 +24,7 @@ function Comment({ id, username, avatar, comment }) {
           alt="Avatar"
           src={`https://cdn.discordapp.com/avatars/${id}/${avatar}`}
         />
-        <Box>
+        <Box sx={{ width: "85%" }}>
           <Typography
             variant="subtitle1"
             sx={{
@@ -39,7 +39,7 @@ function Comment({ id, username, avatar, comment }) {
           <Typography
             variant="body1"
             sx={{
-              width: { lg: "21vw", md: "121vw", sm: "200vw", xs: "74vw" },
+              width: "100%",
               overflowWrap: "break-word",
               ml: 1,
               color: "inherit",

@@ -43,7 +43,7 @@ function Media(props) {
                   loop
                   controls
                   style={{ width: "100%", height: "60vh" }}
-                  src={`http://192.168.128.23:5010/cursos/play?course=${item.course}&seccion=${item.sectionID}&video=${item.videoURL}`}
+                  src={`http://192.168.110.14:5010/cursos/play?course=${item.course}&seccion=${item.sectionID}&video=${item.videoURL}`}
                 ></video>
               ) : (
                 <Skeleton
